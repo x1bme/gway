@@ -1,0 +1,38 @@
+Some sample data to display for demonstration purposes.
+
+
+
+AOV:
+
+
+ValveID: 5768 - 5776
+AovValveType: 0 1 0 1 0 0
+Nominal Stroke: 6.5, 1.12, 0.5, 2, 1.5, 1.12, 3.15
+OnOff: 1, 1, 1, 1, 0, 1 ,1
+SeatDiameter: 5.512, 1.57, 0.5, 1.73, 3.54, 2.08
+
+
+
+MOV:
+
+ValveID 3188 - 3196
+MovValveType 4 4 4 4 4 .. 4
+MovStemType 2 2 3 2 3 2 2 2
+StrokeLength 10 10 30 30 30 30
+SpringPack 0301-109, 0301-109, 0501-183, 0501-183, 0501-183
+
+
+SensorCalibration:
+
+
+
+
+SensorID 794-801
+SensorCalibrationID 1120 - 1125
+ScalingFactor1 1, 1, 1, 1, 1
+ScalingUnit1 2, 2, 2, 2, 2, 2
+ScalingValue1 93.029, 518.578, 19.225, 8.73, 1.33
+SensitivityAspect1 17 17 17 17 17
+
+
+

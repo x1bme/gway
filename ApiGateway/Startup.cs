@@ -74,6 +74,7 @@ namespace ApiGateway
                 // Register the OpenIddict server components.
                 .AddServer(options =>
                 {
+                    options.UseAspNetCore().DisableTransportSecurityRequirement();
                     options
                         .AllowClientCredentialsFlow()
                         .AllowAuthorizationCodeFlow()
@@ -122,8 +123,8 @@ namespace ApiGateway
                     {
                         AuthorizationCode = new OpenApiOAuthFlow
                         {
-                            AuthorizationUrl = new Uri("https://localhost:5001/connect/authorize"),
-                            TokenUrl = new Uri("https://localhost:5001/connect/token"),
+                            AuthorizationUrl = new Uri("http://localhost:5000/connect/authorize"),
+                            TokenUrl = new Uri("http://localhost:5000/connect/token"),
                             Scopes = new Dictionary<string, string>
                             {
                                 {"api", "Access to the API"}
@@ -149,7 +150,7 @@ namespace ApiGateway
             {
                 options.AddPolicy("AllowFrontendApp", builder => 
                 {
-                    builder.WithOrigins("https://localhost:8080")
+                    builder.WithOrigins("http://localhost:8080")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials();
@@ -194,6 +195,30 @@ namespace ApiGateway
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
+				endpoints.MapGet("/health", async context =>
+                {
+                    context.Response.StatusCode = 200;
+                    await context.Response.WriteAsync("Healthy");
+                });
+
+                endpoints.MapGet("/health/ready", async context =>
+                {
+                    try
+                    {
+                        // Check database connection
+                        using var scope = app.ApplicationServices.CreateScope();
+                        var dbContext = scope.ServiceProvider.GetRequiredService<GeminiDbContext>();
+                        await dbContext.Database.CanConnectAsync();
+
+                        context.Response.StatusCode = 200;
+                        await context.Response.WriteAsync("Ready");
+                    }
+                    catch
+                    {
+                        context.Response.StatusCode = 503;
+                        await context.Response.WriteAsync("Not Ready");
+                    }
+                });
             });
         }
     }

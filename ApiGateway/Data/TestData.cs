@@ -34,7 +34,7 @@ namespace ApiGateway
                     ClientId = "postman",
                     ClientSecret = "postman-secret",
                     DisplayName = "Postman",
-                    RedirectUris = { new Uri("https://oauth.pstmn.io/v1/callback") },
+                    RedirectUris = { new Uri("http://oauth.pstmn.io/v1/callback") },
                     Permissions =
                     {
                         OpenIddictConstants.Permissions.Endpoints.Authorization,

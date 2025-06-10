@@ -33,7 +33,7 @@ namespace ApiGateway
                 {
                     ClientId = "swagger",
                     DisplayName = "Swagger UI",
-                    RedirectUris = { new Uri("https://localhost:5001/swagger/oauth2-redirect.html") },
+                    RedirectUris = { new Uri("http://localhost:5000/swagger/oauth2-redirect.html") },
                     Permissions =
                     {
                         OpenIddictConstants.Permissions.Endpoints.Authorization,

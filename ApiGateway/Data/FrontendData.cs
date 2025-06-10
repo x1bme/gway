@@ -40,7 +40,7 @@ namespace ApiGateway
                     ClientId = "frontend",
                     ClientSecret = "frontend-secret",
                     DisplayName = "Frontend",
-                    RedirectUris = { new Uri("https://localhost:8080/callback") },
+                    RedirectUris = { new Uri("http://localhost:8080/callback") },
                     Permissions =
                     {
                         OpenIddictConstants.Permissions.Endpoints.Authorization,
